@@ -9,16 +9,16 @@
     tools:context=".ui.main.MainFragment">
 
     <EditText
-        android:id="@+id/edtSearch"
+        android:id="@+id/edtApi"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginVertical="@dimen/_10sdp"
+        android:minHeight="@dimen/_40sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_20sdp"
         android:background="@drawable/bg_round_corner_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:hint="@string/hint_input"
         android:paddingHorizontal="@dimen/_15sdp"
-        app:layout_constraintBottom_toBottomOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -27,34 +27,55 @@
         android:layout_height="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/ic_baseline_close_24"
-        app:layout_constraintBottom_toBottomOf="@id/edtSearch"
+        app:layout_constraintBottom_toBottomOf="@id/edtApi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtSearch" />
+        app:layout_constraintTop_toTopOf="@id/edtApi" />
 
-    <ImageView
-        android:id="@+id/imAvatar"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_30sdp"
-        app:layout_constraintBottom_toBottomOf="@id/guideline"
-        android:layout_marginVertical="@dimen/_10sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvData"
+    <EditText
+        android:id="@+id/edtToken"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:minHeight="@dimen/_40sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:background="@drawable/bg_round_corner_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline" />
+        android:hint="@string/hint_input2"
+        android:paddingHorizontal="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@id/edtApi" />
+
+    <ImageButton
+        android:id="@+id/btnClearToken"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@drawable/ic_baseline_close_24"
+        app:layout_constraintBottom_toBottomOf="@id/edtToken"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtToken" />
+
+
+    <Button
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:background="@drawable/bg_round_corner_bg"
+        android:text="@string/save"
+        app:layout_constraintTop_toBottomOf="@id/edtToken"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/btnSave"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"/>
+
+    <Button
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:background="@drawable/bg_round_corner_bg"
+        android:text="@string/start"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/btnSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/btnStart"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

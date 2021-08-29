@@ -3,7 +3,7 @@ package com.mytran.myapplication.api.response
 import com.google.gson.annotations.SerializedName
 
 data class CoinResponse (
-    @SerializedName("data") val list : List<CoinData>,
+    @SerializedName("code") val code : Int,
 )
 
 data class CoinData(

@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASE_URL", "\"https://www.coinhako.com/api/v3/\""
+        buildConfigField "String", "BASE_URL", "\"http://job.delivn.vn/api/sms_content/\""
         multiDexEnabled true
     }
 
@@ -74,8 +74,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
     // okhttp
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -93,4 +93,6 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     //display image remote url
     implementation "com.github.bumptech.glide:glide:$glide_version"
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+    implementation "androidx.datastore:datastore-core:1.0.0"
 }

@@ -2,7 +2,6 @@ package com.mytran.myapplication.di
 
 import com.google.gson.GsonBuilder
 import com.mytran.myapplication.BuildConfig
-import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
