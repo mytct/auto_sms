@@ -4,10 +4,11 @@
     <string name="hint_input2">Token</string>
     <string name="no_data">No Data</string>
     <string name="save">Save</string>
+    <string name="running">Running</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="loading_data">Loading...</string>
-    <string name="lb_save_success">Save successfully...</string>
+    <string name="lb_save_success">Save successfully and Running service...</string>
     <string name="lb_send_success">Sent successfully...</string>
     <string name="long_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</string>
 </resources>

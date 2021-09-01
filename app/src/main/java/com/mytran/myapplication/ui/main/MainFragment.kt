@@ -1,6 +1,6 @@
 package com.mytran.myapplication.ui.main
 
-import android.Manifest
+import android.app.ActivityManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -8,16 +8,17 @@ import android.content.IntentFilter
 import android.telephony.SmsMessage
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.LiveData
+import androidx.core.content.ContextCompat.getSystemService
 import com.mytran.myapplication.R
-import com.mytran.myapplication.api.response.CoinResponse
 import com.mytran.myapplication.ui.base.CoreFragment
 import com.mytran.myapplication.ui.base.TypeCoreAction
+import com.mytran.myapplication.ui.main.services.AutoSmsService
 import com.mytran.myapplication.utils.launchPeriodicAsync
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.system.exitProcess
 
 
 class MainFragment : CoreFragment() {
@@ -33,6 +34,7 @@ class MainFragment : CoreFragment() {
     private val homeViewModel: MainViewModel by viewModel()
     override fun getLayoutId(): Int = R.layout.main_fragment
     override fun defaultData() {
+        stopService()
     }
 
     override fun initObserver() {
@@ -49,7 +51,7 @@ class MainFragment : CoreFragment() {
         homeViewModel.response.observe(viewLifecycleOwner, {
             //Toast.makeText(context, R.string.lb_send_success, Toast.LENGTH_SHORT).show()
         })
-        initSMSListener()
+        //initSMSListener()
     }
 
     private fun initSMSListener() {
@@ -94,8 +96,8 @@ class MainFragment : CoreFragment() {
     override fun onDestroy() {
         super.onDestroy()
         jobCoroutine.cancel()
-        job.cancel()
-        activity?.unregisterReceiver(receiver)
+        //job.cancel()
+//        activity?.unregisterReceiver(receiver)
     }
 
     override fun onPause() {
@@ -116,10 +118,32 @@ class MainFragment : CoreFragment() {
             url = edtApi.text.toString()
             uiScope.launch { homeViewModel.saveNewData(edtApi.text.toString(), edtToken.text.toString()) }
             Toast.makeText(context, R.string.lb_save_success, Toast.LENGTH_SHORT).show()
+            startService()
+            activity?.finish()
+            exitProcess(0)
         }
+//        val status = isMyServiceRunning(AutoSmsService::class.java)
+//        if(status) btnStart?.setText(R.string.running)
+//        else btnStart?.setText(R.string.start)
+//
 //        btnStart?.setOnClickListener {
-//            initIntervalFetch()
+//            if(!status) {
+//                btnStart?.setText(R.string.running)
+//                startService()
+//            }
+//            else {
+//                btnStart?.setText(R.string.start)
+//                activity?.stopService(Intent(activity, AutoSmsService::class.java))
+//            }
 //        }
+    }
+
+    private fun startService() {
+        activity?.startService(Intent(activity, AutoSmsService::class.java))
+    }
+
+    private fun stopService() {
+        activity?.stopService(Intent(activity, AutoSmsService::class.java))
     }
 
     override fun doingActionClick(data: Any?, action: String) {
@@ -133,5 +157,17 @@ class MainFragment : CoreFragment() {
                 }
             }
         }
+    }
+
+    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
+        val manager = activity?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager?
+        manager?.run {
+            for (service in getRunningServices(Int.MAX_VALUE)) {
+                if (serviceClass.name == service.service.className) {
+                    return true
+                }
+            }
+        }
+        return false
     }
 }
